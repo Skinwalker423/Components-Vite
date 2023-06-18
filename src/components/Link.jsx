@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { NavigationContext } from "../context/navigation";
 import classNames from "classnames";
 import useNavigation from "../hooks/useNavigation";
 
