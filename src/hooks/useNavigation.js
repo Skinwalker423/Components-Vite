@@ -2,10 +2,7 @@ import { useContext } from "react";
 import { NavigationContext } from "../context/navigation";
 
 const useNavigation = () => {
-  const { currentPath, navigate } = useContext(
-    NavigationContext
-  );
-  return { currentPath, navigate };
+  return useContext(NavigationContext);
 };
 
 export default useNavigation;
