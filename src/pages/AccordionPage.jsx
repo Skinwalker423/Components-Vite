@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from "../components/Accordion";
+import { Accordion } from "../components";
 
 const AccordionPage = () => {
   const items = [
@@ -24,7 +24,7 @@ const AccordionPage = () => {
   ];
 
   return (
-    <div className='w-full h-full'>
+    <div className='flex flex-col items-center w-full h-screen'>
       <div className='my-5'>
         <h1>Accordion</h1>
       </div>

@@ -1,28 +1,43 @@
-import { useState } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+} from "react";
+import { NavigationContext } from "./context/navigation";
 import "./App.css";
-import Dropdown from "./components/Dropdown";
+import { Button, Link, Route } from "./components";
+import ButtonPage from "./pages/ButtonPage";
+import AccordionPage from "./pages/AccordionPage";
+import DropdownPage from "./pages/DropdownPage";
 
 function App() {
-  const [selected, setSelected] = useState(null);
+  const { currentPath, navigate } = useContext(
+    NavigationContext
+  );
 
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
-
-  const options = [
-    { label: "Red", value: "red" },
-    { label: "Green", value: "green" },
-    { label: "Blue", value: "blue" },
-  ];
   return (
-    <div className='flex flex-col justify-center items-center w-full h-screen w-'>
-      <h1 className='text-6xl my-6'>Dropdown</h1>
-      <Dropdown
-        handleSelect={handleSelect}
-        selected={selected}
-        width={"1/2"}
-        options={options}
-      />
+    <div className='flex gap-10 justify-start items-center w-full h-screen'>
+      <div className='h-1/2 flex flex-col items-center justify-evenly'>
+        <Link to='/dropdown'>
+          <Button primary>Dropdown Page</Button>
+        </Link>
+        <Link to='/accordion'>
+          <Button danger>Accordion Page</Button>
+        </Link>
+        <Link to='/button'>
+          <Button success>Button Page</Button>
+        </Link>
+      </div>
+      <Route path='/dropdown'>
+        <DropdownPage />
+      </Route>
+      <Route path='/button'>
+        <ButtonPage />
+      </Route>
+      <Route path='/accordion'>
+        <AccordionPage />
+      </Route>
     </div>
   );
 }

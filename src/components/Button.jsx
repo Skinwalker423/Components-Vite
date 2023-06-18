@@ -50,8 +50,6 @@ const Button = ({
     }
   );
 
-  console.log(finalClassName);
-
   return (
     <button {...rest} className={finalClassName}>
       {children}

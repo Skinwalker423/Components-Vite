@@ -1,21 +1,19 @@
 import React from "react";
-import Button from "../components/Button";
+import { Button } from "../components";
 import { GoBell } from "react-icons/go";
 
 const ButtonPage = () => {
   return (
-    <div>
+    <div className='flex flex-col justify-start items-center w-full h-screen'>
       <h1>Button Page</h1>
       <div className='flex flex-col gap-2'>
         <Button
           rounded
           outline
           primary
-          onClick={handleOnClick}
+          onClick={() => {}}
           className='mb-10'
-        >
-          count is {count}
-        </Button>
+        ></Button>
         <Button success>
           <GoBell /> <span>Submit</span>
         </Button>

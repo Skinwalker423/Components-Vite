@@ -1,30 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import Panel from "./Panel";
 
 const Dropdown = ({
   options,
-  width = 48,
-  handleSelect,
-  selected,
+  width = "w-full",
+  onChange,
+  value,
 }) => {
   const [open, setOpen] = useState(false);
+
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (!dropdownRef.current) {
+        return;
+      }
+
+      if (!dropdownRef?.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClick, true);
+
+    return document.removeEventListener(
+      "click",
+      handleClick
+    );
+  }, []);
 
   const handleToggleOptions = () => {
     setOpen((bool) => !bool);
   };
 
   const handleOptionClick = (option) => {
-    handleSelect(option);
+    onChange(option);
     setOpen(false);
   };
 
   const list = options.map((option) => {
-    const { label, value } = option;
+    const { label } = option;
     const finalClassNames = classNames(
-      "hover:bg-slate-200 px-3 py-3 text-xl cursor-pointer",
+      "hover:bg-slate-200 rounded px-3 py-3 m-1 text-xl cursor-pointer",
       {
-        "bg-slate-200": selected?.value === value,
+        "bg-slate-200": value?.value === option.value,
       }
     );
 
@@ -32,26 +53,26 @@ const Dropdown = ({
       <div
         className={finalClassNames}
         onClick={() => handleOptionClick(option)}
-        key={value}
+        key={option.value}
       >
         <div>{label}</div>
       </div>
     );
   });
   return (
-    <div
-      className={`w-${width} flex flex-col justify-start mx-auto h-52`}
-    >
-      <h1
-        className='flex justify-between items-center border border-slate-400 px-3 py-2 text-xl cursor-pointer'
-        onClick={handleToggleOptions}
-      >
-        <span>{selected?.label || "Select Color..."}</span>
-        <span>
-          {open ? <BsChevronUp /> : <BsChevronDown />}
-        </span>
-      </h1>
-      {open && <div className='border'>{list}</div>}
+    <div ref={dropdownRef} className='w-48 relative'>
+      <Panel>
+        <h1
+          className='flex justify-between items-center py-2 px-3'
+          onClick={handleToggleOptions}
+        >
+          <span>{value?.label || "Select Color..."}</span>
+          <span>
+            {open ? <BsChevronUp /> : <BsChevronDown />}
+          </span>
+        </h1>
+      </Panel>
+      {open && <Panel>{list}</Panel>}
     </div>
   );
 };
