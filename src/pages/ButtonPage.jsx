@@ -4,7 +4,7 @@ import { GoBell } from "react-icons/go";
 
 const ButtonPage = () => {
   return (
-    <div className='flex flex-col justify-start items-center w-full h-screen'>
+    <div>
       <h1>Button Page</h1>
       <div className='flex flex-col gap-2'>
         <Button

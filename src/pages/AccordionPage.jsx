@@ -24,8 +24,8 @@ const AccordionPage = () => {
   ];
 
   return (
-    <div className='flex flex-col items-center w-full h-screen'>
-      <div className='my-5'>
+    <div>
+      <div>
         <h1>Accordion</h1>
       </div>
       <Accordion items={items} />

@@ -14,7 +14,7 @@ function DropdownPage() {
     { label: "Blue", value: "blue" },
   ];
   return (
-    <div className='relative flex justify-center items-start w-full h-screen'>
+    <div>
       <Dropdown
         onChange={handleSelect}
         value={selected}

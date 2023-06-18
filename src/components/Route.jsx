@@ -6,7 +6,7 @@ const Route = ({ path, children }) => {
 
   if (path !== currentPath) return null;
 
-  return <div className='relative'>{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default Route;

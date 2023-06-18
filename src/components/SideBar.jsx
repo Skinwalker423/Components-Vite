@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "./Link";
-import Panel from "./Panel";
 import classNames from "classnames";
 
 const SideBar = () => {
@@ -17,7 +16,8 @@ const SideBar = () => {
 
   const renderedLinks = links.map(({ label, path }) => {
     const classes = classNames("px-2 py-3 bg-white", {
-      "bg-slate-300": selected === path,
+      "text-blue-500 border-l border-l-slate-400 font-bold":
+        selected === path,
     });
     return (
       <Link
@@ -32,7 +32,7 @@ const SideBar = () => {
   });
 
   return (
-    <div className='h-screen bg-red-300 w-1/6 left-0 fixed flex flex-col items-center justify-center'>
+    <div className='sticky top-0 overflow-y-scroll flex flex-col'>
       {renderedLinks}
     </div>
   );
