@@ -5,14 +5,15 @@ import useNavigation from "../hooks/useNavigation";
 const Link = ({
   children,
   to,
-  handleSelected,
+  activeClassName,
   className,
 }) => {
-  const { navigate } = useNavigation();
+  const { navigate, currentPath } = useNavigation();
 
   const finalClassNames = classNames(
-    "text-blue-500 w-full",
-    className
+    "text-blue-500",
+    className,
+    currentPath === to && activeClassName
   );
 
   const handleClick = (e) => {
@@ -20,7 +21,6 @@ const Link = ({
       return;
     } else {
       e.preventDefault();
-      handleSelected(to);
       navigate(to);
     }
   };

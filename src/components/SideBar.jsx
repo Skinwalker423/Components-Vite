@@ -1,29 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "./Link";
 import classNames from "classnames";
 
 const SideBar = () => {
-  const [selected, setSelected] = useState(null);
   const links = [
     { label: "Dropdown Page", path: "/" },
     { label: "Accordion Page", path: "/accordion" },
     { label: "Button Page", path: "/button" },
   ];
 
-  const handleSelected = (link) => {
-    setSelected(link);
-  };
-
   const renderedLinks = links.map(({ label, path }) => {
-    const classes = classNames("px-2 py-3 bg-white", {
-      "text-blue-500 border-l border-l-slate-400 font-bold":
-        selected === path,
-    });
+    const classes = classNames("mb-3 px-2");
     return (
       <Link
-        key={label}
+        activeClassName='text-blue-500 border-l-4 border-l-slate-400 font-bold'
         className={classes}
-        handleSelected={handleSelected}
+        key={label}
         to={path}
       >
         {label}
@@ -32,7 +24,7 @@ const SideBar = () => {
   });
 
   return (
-    <div className='sticky top-0 overflow-y-scroll flex flex-col'>
+    <div className='sticky overflow-y-scroll top-0 flex flex-col items-start'>
       {renderedLinks}
     </div>
   );
