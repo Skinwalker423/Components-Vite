@@ -1,13 +1,23 @@
-import React from "react";
-import { Modal } from "../components";
+import React, { useState } from "react";
+import { Modal, Button } from "../components";
 
 const ModalPage = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <div>
-        <h1>Modal</h1>
-      </div>
-      <Modal />
+      <h1>Modal</h1>
+      <Button onClick={handleOpen} primary outline>
+        Open Modal
+      </Button>
+      {open && <Modal handleClose={handleClose} />}
     </div>
   );
 };

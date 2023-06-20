@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button, Link, Route } from "./components";
+import { Route } from "./components";
 import ButtonPage from "./pages/ButtonPage";
 import AccordionPage from "./pages/AccordionPage";
 import DropdownPage from "./pages/DropdownPage";
