@@ -15,6 +15,7 @@ function DropdownPage() {
   ];
   return (
     <div>
+      <h1 className='mb-5'>Dropdown Page</h1>
       <Dropdown
         onChange={handleSelect}
         value={selected}
