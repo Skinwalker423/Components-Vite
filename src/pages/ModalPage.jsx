@@ -12,12 +12,12 @@ const ModalPage = () => {
   };
 
   return (
-    <div className='relative w-1/2'>
+    <div>
       <h1>Modal</h1>
       <Button onClick={handleOpen} primary outline>
         Open Modal
       </Button>
-      {open && <Modal handleClose={handleClose} />}
+      {open && <Modal onClose={handleClose} />}
     </div>
   );
 };
