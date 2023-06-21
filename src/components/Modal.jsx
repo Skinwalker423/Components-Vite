@@ -3,28 +3,32 @@ import Button from "./Button";
 import { AiOutlineClose } from "react-icons/ai";
 import ReactDOM from "react-dom";
 
-const Modal = ({ onClose }) => {
+const Modal = ({
+  onClose,
+  children,
+  actionBar,
+  closeIcon = false,
+}) => {
   return ReactDOM.createPortal(
     <div>
       <div
         onClick={onClose}
         className='absolute inset-0 bg-gray-800 bg-opacity-50'
       ></div>
-      <div className='absolute inset-x-1/3 inset-y-80 flex justify-between items-start flex-col border py-3 px-10 rounded-2xl bg-white'>
-        <div className='relative w-full h-full flex flex-col items-start justify-around'>
-          <div className='w-full h-full'>
-            <h3 className='flex justify-between w-full font-bold text-2xl'>
-              Modal Title
-              <div
-                onClick={onClose}
-                className='cursor-pointer'
-              >
-                <AiOutlineClose />
-              </div>
-            </h3>
-            <p className='mt-5'>Modal Body</p>
+      <div className='absolute inset-80 flex justify-between flex-col border px-10 py-3 rounded-2xl bg-white'>
+        {closeIcon && (
+          <div
+            onClick={onClose}
+            className='absolute top-0 right-0 px-5 py-2'
+          >
+            X
           </div>
-          <Button secondary>Action</Button>
+        )}
+        <div className='relative w-full h-full flex flex-col justify-around'>
+          {children}
+          <div className='relative flex justify-between items-center'>
+            {actionBar}
+          </div>
         </div>
       </div>
     </div>,
