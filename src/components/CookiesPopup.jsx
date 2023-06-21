@@ -3,10 +3,24 @@ import Modal from "./Modal";
 import Button from "./Button";
 
 const CookiesPopup = ({ onClose }) => {
+  const handleAccept = () => {
+    console.log("gotcha sucka");
+    onClose();
+  };
+  const handleReject = () => {
+    console.log("fuck off then");
+    onClose();
+    window.history.pushState({}, "", "/wompwomp");
+  };
+
   const actionBar = (
     <div className='flex justify-center items-center gap-5 w-full'>
-      <Button success>Accept</Button>
-      <Button secondary>Reject</Button>
+      <Button onClick={handleAccept} success>
+        Accept
+      </Button>
+      <Button onClick={handleReject} secondary>
+        Reject
+      </Button>
     </div>
   );
 
