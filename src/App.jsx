@@ -5,8 +5,26 @@ import AccordionPage from "./pages/AccordionPage";
 import DropdownPage from "./pages/DropdownPage";
 import SideBar from "./components/SideBar";
 import ModalPage from "./pages/ModalPage";
+import { useEffect, useState } from "react";
+import { CookiesPopup } from "./components";
 
 function App() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setShowPopup(true);
+  };
+  const handleClose = () => {
+    setShowPopup(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowPopup(true);
+    }, 10000);
+  }, []);
+
   return (
     <div className='container mx-auto grid grid-cols-6 gap-4 mt-4'>
       <SideBar />
@@ -24,6 +42,7 @@ function App() {
           <ModalPage />
         </Route>
       </div>
+      {showPopup && <CookiesPopup onClose={handleClose} />}
     </div>
   );
 }

@@ -19,9 +19,9 @@ const Modal = ({
         {closeIcon && (
           <div
             onClick={onClose}
-            className='absolute top-0 right-0 px-5 py-2'
+            className='absolute top-0 right-0 px-5 py-2 cursor-pointer rounded-full hover:bg-slate-50'
           >
-            X
+            <AiOutlineClose />
           </div>
         )}
         <div className='relative w-full h-full flex flex-col justify-around'>

@@ -1,16 +1,8 @@
-import React, { useState } from "react";
-import { Modal, Button } from "../components";
+import React from "react";
+import Modal from "./Modal";
+import Button from "./Button";
 
-const ModalPage = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+const CookiesPopup = ({ onClose }) => {
   const actionBar = (
     <div className='flex justify-center items-center gap-5 w-full'>
       <Button success>Accept</Button>
@@ -19,7 +11,7 @@ const ModalPage = () => {
   );
 
   const modal = (
-    <Modal actionBar={actionBar} onClose={handleClose}>
+    <Modal actionBar={actionBar} onClose={onClose}>
       <div>
         <h3 className='font-bold text-2xl'>
           Accept Cookies Policy
@@ -40,16 +32,7 @@ const ModalPage = () => {
       </div>
     </Modal>
   );
-
-  return (
-    <div>
-      <h1>Modal</h1>
-      <Button onClick={handleOpen} primary outline>
-        Open Modal
-      </Button>
-      {open && modal}
-    </div>
-  );
+  return <div>{modal}</div>;
 };
 
-export default ModalPage;
+export default CookiesPopup;
