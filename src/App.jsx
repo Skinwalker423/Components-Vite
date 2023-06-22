@@ -46,7 +46,7 @@ function App() {
           <TablePage />
         </Route>
       </div>
-      {showPopup && <CookiesPopup onClose={handleClose} />}
+      {/* {showPopup && <CookiesPopup onClose={handleClose} />} */}
     </div>
   );
 }
