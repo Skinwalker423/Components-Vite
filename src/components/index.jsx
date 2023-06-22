@@ -6,6 +6,7 @@ import Link from "./Link";
 import Route from "./Route";
 import Modal from "./Modal";
 import CookiesPopup from "./CookiesPopup";
+import Table from "./Table";
 
 export {
   Dropdown,
@@ -16,4 +17,5 @@ export {
   Route,
   Modal,
   CookiesPopup,
+  Table,
 };
