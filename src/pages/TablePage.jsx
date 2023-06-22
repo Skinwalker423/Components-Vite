@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "../components";
 
 const TablePage = () => {
@@ -9,9 +9,44 @@ const TablePage = () => {
     { name: "Lime", color: "bg-green-500", score: 4 },
   ];
 
+  const [tableData, setTableData] = useState(data);
+
+  const handleFilterAscending = () => {
+    console.log("clicked filer asc");
+    const sortedData = tableData.sort((a, b) => {
+      if (a.score < b.score) {
+        return -1;
+      }
+      if (a.score > b.score) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("sorted data:", sortedData);
+    setTableData([...sortedData]);
+  };
+  const handleFilterDescending = () => {
+    console.log("clicked filer desc");
+    const sortedData = tableData.sort((a, b) => {
+      if (a.score > b.score) {
+        return -1;
+      }
+      if (a.score < b.score) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("sorted data:", sortedData);
+    setTableData([...sortedData]);
+  };
+
   return (
     <div className='w-full h-full'>
-      <Table data={data} />
+      <Table
+        handleFilterAscending={handleFilterAscending}
+        handleFilterDescending={handleFilterDescending}
+        data={tableData}
+      />
     </div>
   );
 };

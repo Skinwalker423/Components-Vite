@@ -20,11 +20,11 @@ function App() {
     setShowPopup(false);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowPopup(true);
-    }, 10000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowPopup(true);
+  //   }, 10000);
+  // }, []);
 
   return (
     <div className='container mx-auto grid grid-cols-6 gap-4 mt-4'>

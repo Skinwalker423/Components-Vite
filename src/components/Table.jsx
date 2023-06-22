@@ -1,7 +1,12 @@
 import React from "react";
 import classNames from "classnames";
+import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 
-const Table = ({ data }) => {
+const Table = ({
+  data,
+  handleFilterDescending,
+  handleFilterAscending,
+}) => {
   if (!data) return;
 
   const table = (
@@ -10,7 +15,19 @@ const Table = ({ data }) => {
         <tr>
           <th className='p-2'>Name</th>
           <th>Color</th>
-          <th>Score</th>
+          <th className='flex items-center justify-center gap-3'>
+            <div className='hover:cursor-pointer'>
+              <BiUpArrow
+                fontSize={"large"}
+                onClick={handleFilterAscending}
+              />
+              <BiDownArrow
+                fontSize={"large"}
+                onClick={handleFilterDescending}
+              />
+            </div>
+            Score
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +50,7 @@ const Table = ({ data }) => {
     </table>
   );
 
-  return <div>{table}</div>;
+  return table;
 };
 
 export default Table;
