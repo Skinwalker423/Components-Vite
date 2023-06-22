@@ -25,7 +25,7 @@ const CookiesPopup = ({ onClose }) => {
   );
 
   const modal = (
-    <Modal actionBar={actionBar} onClose={onClose}>
+    <Modal actionBar={actionBar} onClose={handleReject}>
       <div>
         <h3 className='font-bold text-2xl'>
           Accept Cookies Policy
