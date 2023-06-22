@@ -25,11 +25,13 @@ const CookiesPopup = ({ onClose }) => {
   );
 
   const modal = (
-    <Modal actionBar={actionBar} onClose={handleReject}>
+    <Modal
+      inset={80}
+      actionBar={actionBar}
+      onClose={handleReject}
+      title='Accept Cookies Policy'
+    >
       <div>
-        <h3 className='font-bold text-2xl'>
-          Accept Cookies Policy
-        </h3>
         <p className='my-2'>
           Modal Body Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Esse exercitationem dolore culpa

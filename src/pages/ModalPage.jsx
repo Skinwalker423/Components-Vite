@@ -20,13 +20,12 @@ const ModalPage = () => {
 
   const modal = (
     <Modal
-      title='Accept Cookies Policy'
+      title='Modal Tile Here'
       actionBar={actionBar}
       onClose={handleClose}
-      inset={80}
     >
       <div>
-        <p className='my-2 max-h-32 overflow-auto'>
+        <p className='my-2 max-h-72 overflow-auto'>
           Modal Body Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Esse exercitationem dolore culpa
           neque nam, dolorem ratione aliquam architecto

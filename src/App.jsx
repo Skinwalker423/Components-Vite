@@ -7,6 +7,7 @@ import SideBar from "./components/SideBar";
 import ModalPage from "./pages/ModalPage";
 import { useEffect, useState } from "react";
 import { CookiesPopup } from "./components";
+import TablePage from "./pages/TablePage";
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path='/modal'>
           <ModalPage />
+        </Route>
+        <Route path='/table'>
+          <TablePage />
         </Route>
       </div>
       {showPopup && <CookiesPopup onClose={handleClose} />}
