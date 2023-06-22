@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./Button";
 import { AiOutlineClose } from "react-icons/ai";
 import ReactDOM from "react-dom";
@@ -8,14 +8,27 @@ const Modal = ({
   children,
   actionBar,
   closeIcon = false,
+  title,
+  inset = 80,
 }) => {
+  useEffect(() => {
+    const body = document.querySelector("body");
+
+    body.classList.add("overflow-hidden");
+
+    return () => {
+      body.classList.remove("overflow-hidden");
+    };
+  }, []);
   return ReactDOM.createPortal(
     <div>
       <div
         onClick={onClose}
         className='absolute inset-0 bg-gray-800 bg-opacity-50'
       ></div>
-      <div className='absolute inset-80 flex justify-between flex-col border px-10 py-3 rounded-2xl bg-white'>
+      <div
+        className={`absolute inset-${inset} flex justify-between flex-col border px-10 py-3 rounded-2xl bg-white`}
+      >
         {closeIcon && (
           <div
             onClick={onClose}
@@ -25,6 +38,9 @@ const Modal = ({
           </div>
         )}
         <div className='relative w-full h-full flex flex-col justify-around'>
+          {!!title && (
+            <h3 className='font-bold text-2xl'>{title}</h3>
+          )}
           {children}
           <div className='relative flex justify-between items-center'>
             {actionBar}

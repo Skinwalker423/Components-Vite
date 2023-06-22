@@ -19,12 +19,14 @@ const ModalPage = () => {
   );
 
   const modal = (
-    <Modal actionBar={actionBar} onClose={handleClose}>
+    <Modal
+      title='Accept Cookies Policy'
+      actionBar={actionBar}
+      onClose={handleClose}
+      inset={80}
+    >
       <div>
-        <h3 className='font-bold text-2xl'>
-          Accept Cookies Policy
-        </h3>
-        <p className='my-2'>
+        <p className='my-2 max-h-32 overflow-auto'>
           Modal Body Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Esse exercitationem dolore culpa
           neque nam, dolorem ratione aliquam architecto
@@ -35,7 +37,17 @@ const ModalPage = () => {
           voluptas aperiam cumque nam maiores
           exercitationem. Distinctio suscipit doloremque
           reiciendis velit aspernatur. Exercitationem iusto
-          expedita nemo?
+          expedita nemo? Modal Body Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Esse
+          exercitationem dolore culpa neque nam, dolorem
+          ratione aliquam architecto consequatur est
+          quisquam fugiat cum quo quae repellat iusto
+          doloribus laborum modi. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Magni animi dolorum
+          ducimus architecto? Expedita voluptas aperiam
+          cumque nam maiores exercitationem. Distinctio
+          suscipit doloremque reiciendis velit aspernatur.
+          Exercitationem iusto expedita nemo?
         </p>
       </div>
     </Modal>
