@@ -12,22 +12,20 @@ const Modal = ({
   inset = 80,
 }) => {
   useEffect(() => {
-    const body = document.querySelector("body");
-
-    body.classList.add("overflow-hidden");
+    document.body.classList.add("overflow-hidden");
 
     return () => {
-      body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden");
     };
   }, []);
   return ReactDOM.createPortal(
     <div>
       <div
         onClick={onClose}
-        className='absolute inset-0 bg-gray-800 bg-opacity-50'
+        className='fixed inset-0 bg-gray-800 bg-opacity-50'
       ></div>
       <div
-        className={`absolute inset-${inset} flex justify-between flex-col border px-10 py-3 rounded-2xl bg-white`}
+        className={`fixed inset-${inset} flex justify-between flex-col border px-10 py-3 rounded-2xl bg-white`}
       >
         {closeIcon && (
           <div
