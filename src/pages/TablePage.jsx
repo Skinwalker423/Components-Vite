@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table } from "../components";
+import { Table, SortableTable } from "../components";
 import classNames from "classnames";
 import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 
@@ -40,7 +40,7 @@ const TablePage = () => {
     {
       label: "Name",
       render: (fruit) => fruit.name,
-      sort: handleSorting,
+      sortValue: "name",
     },
     {
       label: "Color",
@@ -55,30 +55,7 @@ const TablePage = () => {
     {
       label: "Score",
       render: (fruit) => fruit.score,
-      sort: handleSorting,
-      header: () => {
-        return (
-          <th>
-            <div className='flex items-center justify-center gap-2'>
-              <div>
-                <BiUpArrow
-                  fontSize={"large"}
-                  onClick={() =>
-                    handleSorting("score", true)
-                  }
-                />
-                <BiDownArrow
-                  fontSize={"large"}
-                  onClick={() =>
-                    handleSorting("score", false)
-                  }
-                />
-              </div>
-              <div>Score</div>
-            </div>
-          </th>
-        );
-      },
+      sortValue: "score",
     },
   ];
 
@@ -88,10 +65,11 @@ const TablePage = () => {
 
   return (
     <div className='w-full h-full'>
-      <Table
+      <SortableTable
         data={tableData}
         config={config}
         keyFn={keyFn}
+        handleSorting={handleSorting}
       />
     </div>
   );

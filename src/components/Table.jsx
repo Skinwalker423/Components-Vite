@@ -5,16 +5,19 @@ import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 const Table = ({ data, config, keyFn }) => {
   if (!data) return;
 
-  const headerColumn = config.map((header) => {
-    const label = header.label.toLowerCase();
-    const renderedHeader = header.header ? (
-      <Fragment key={header.label}>
-        {header.header()}
+  console.log("this is config", config);
+
+  const headerColumn = config.map((column) => {
+    const label = column.label.toLowerCase();
+    if (!column.header)
+      return <th key={column.label}>{column.label}</th>;
+
+    const renderedHeader = (
+      <Fragment key={column.label}>
+        {column.header}
       </Fragment>
-    ) : (
-      <th key={header.label}>{header.label}</th>
     );
-    console.log(label);
+
     return renderedHeader;
   });
 
