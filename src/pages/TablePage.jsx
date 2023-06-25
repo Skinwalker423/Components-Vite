@@ -55,7 +55,7 @@ const TablePage = () => {
     {
       label: "Score",
       render: (fruit) => fruit.score,
-      sortValue: (fruit) => fruit.name,
+      sortValue: (fruit) => fruit.score,
     },
   ];
 
