@@ -1,21 +1,13 @@
 import React, { Fragment } from "react";
-import classNames from "classnames";
-import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 
 const Table = ({ data, config, keyFn }) => {
   if (!data) return;
 
-  console.log("this is config", config);
-
-  const headerColumn = config.map((column) => {
-    const label = column.label.toLowerCase();
-    if (!column.header)
-      return <th key={column.label}>{column.label}</th>;
+  const headerColumn = config.map(({ label, header }) => {
+    if (!header) return <th key={label}>{label}</th>;
 
     const renderedHeader = (
-      <Fragment key={column.label}>
-        {column.header}
-      </Fragment>
+      <Fragment key={label}>{header}</Fragment>
     );
 
     return renderedHeader;

@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Table, SortableTable } from "../components";
-import classNames from "classnames";
-import { BiUpArrow, BiDownArrow } from "react-icons/bi";
+import React from "react";
+import { SortableTable } from "../components";
 
 const TablePage = () => {
   const data = [
@@ -9,32 +7,8 @@ const TablePage = () => {
     { name: "Apple", color: "bg-red-500", score: 30 },
     { name: "banana", color: "bg-yellow-500", score: 1 },
     { name: "Lime", color: "bg-green-500", score: 4 },
+    { name: "Eggplant", color: "bg-purple-500", score: 10 },
   ];
-
-  const [tableData, setTableData] = useState(data);
-
-  const handleSorting = (column, ascending) => {
-    const sortedData = tableData.sort((a, b) => {
-      const first =
-        typeof a[column] === "number"
-          ? a[column]
-          : a[column].toString().toLowerCase();
-      const second =
-        typeof b[column] === "number"
-          ? b[column]
-          : b[column].toString().toLowerCase();
-
-      if (first < second) {
-        return ascending ? -1 : 1;
-      }
-      if (first > second) {
-        return ascending ? 1 : -1;
-      }
-      return 0;
-    });
-    console.log("sorted data:", sortedData);
-    setTableData([...sortedData]);
-  };
 
   const config = [
     {
@@ -57,6 +31,11 @@ const TablePage = () => {
       render: (fruit) => fruit.score,
       sortValue: (fruit) => fruit.score,
     },
+    {
+      label: "Score Squared",
+      render: (fruit) => fruit.score ** 2,
+      sortValue: (fruit) => fruit.score ** 2,
+    },
   ];
 
   const keyFn = (fruit) => {
@@ -66,10 +45,9 @@ const TablePage = () => {
   return (
     <div className='w-full h-full'>
       <SortableTable
-        data={tableData}
+        data={data}
         config={config}
         keyFn={keyFn}
-        handleSorting={handleSorting}
       />
     </div>
   );
