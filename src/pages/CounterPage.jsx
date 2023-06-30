@@ -5,6 +5,7 @@ import React, {
 } from "react";
 import { Button } from "../components";
 import useCounter from "../hooks/useCount";
+import { produce } from "immer";
 
 const ACTION_TYPES = {
   SET_COUNT_RESET_VALUE: "SET_COUNT_RESET_VALUE",
@@ -17,20 +18,19 @@ const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.SET_COUNT_RESET_VALUE:
-      return {
-        ...state,
-        count: state.count + state.valueToAdd,
-        valueToAdd: 0,
-      };
+      state.count = state.count + state.valueToAdd;
+      state.valueToAdd = 0;
+      return;
+
     case ACTION_TYPES.INCREMENT_COUNT:
-      return { ...state, count: state.count + 1 };
+      state.count = state.count + 1;
+      return;
     case ACTION_TYPES.DECREMENT_COUNT:
-      return { ...state, count: state.count - 1 };
+      state.count = state.count - 1;
+      return;
     case ACTION_TYPES.SET_VALUE_TO_ADD:
-      return {
-        ...state,
-        valueToAdd: payload,
-      };
+      state.valueToAdd = payload;
+      return;
 
     default:
       throw new Error(
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
 };
 
 const CounterPage = ({ initialCount }) => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0,
   });
