@@ -7,17 +7,30 @@ import { Button } from "../components";
 import useCounter from "../hooks/useCount";
 
 const ACTION_TYPES = {
-  SET_COUNT: "SET_COUNT",
+  SET_COUNT_RESET_VALUE: "SET_COUNT_RESET_VALUE",
+  INCREMENT_COUNT: "INCREMENT_COUNT",
+  DECREMENT_COUNT: "DECREMENT_COUNT",
   SET_VALUE_TO_ADD: "SET_VALUE_TO_ADD",
 };
 
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case ACTION_TYPES.SET_COUNT:
-      return { ...state, count: payload };
+    case ACTION_TYPES.SET_COUNT_RESET_VALUE:
+      return {
+        ...state,
+        count: state.count + state.valueToAdd,
+        valueToAdd: 0,
+      };
+    case ACTION_TYPES.INCREMENT_COUNT:
+      return { ...state, count: state.count + 1 };
+    case ACTION_TYPES.DECREMENT_COUNT:
+      return { ...state, count: state.count - 1 };
     case ACTION_TYPES.SET_VALUE_TO_ADD:
-      return { ...state, valueToAdd: payload };
+      return {
+        ...state,
+        valueToAdd: payload,
+      };
 
     default:
       throw new Error(
@@ -43,10 +56,8 @@ const CounterPage = ({ initialCount }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newCount = state.valueToAdd + state.count;
     dispatch({
-      type: ACTION_TYPES.SET_COUNT,
-      payload: newCount,
+      type: ACTION_TYPES.SET_COUNT_RESET_VALUE,
     });
     console.log("form submitted");
   };
@@ -54,15 +65,13 @@ const CounterPage = ({ initialCount }) => {
   const incrementCount = () => {
     const newCount = state.count + 1;
     dispatch({
-      type: ACTION_TYPES.SET_COUNT,
-      payload: newCount,
+      type: ACTION_TYPES.INCREMENT_COUNT,
     });
   };
   const decrementCount = () => {
     const newCount = state.count - 1;
     dispatch({
-      type: ACTION_TYPES.SET_COUNT,
-      payload: newCount,
+      type: ACTION_TYPES.DECREMENT_COUNT,
     });
   };
 
